@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toko Naufal - Laptop Gaming</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+        body { background: #0a0a0f; color: #e0e0e0; }
+
+        /* Header & Search */
+        header { background: #13131f; padding: 15px; border-bottom: 2px solid #00f0ff; position: sticky; top: 0; z-index: 100; }
+        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: #00f0ff; text-shadow: 0 0 10px #00f0ff; }
+        .wa-btn { background: #00ff88; color: #000; padding: 8px 12px; border-radius: 20px; text-decoration: none; font-weight: bold; font-size: 0.9rem; }
+        
+        .search-box { width: 100%; padding: 10px; border-radius: 20px; border: 2px solid #b026ff; background: #0a0a0f; color: white; outline: none; }
+
+        /* Menu Navigasi */
+        .menu-scroll { display: flex; gap: 10px; overflow-x: auto; padding: 15px; background: #13131f; }
+        .menu-btn { 
+            background: transparent; border: 2px solid #00f0ff; color: #00f0ff; 
+            padding: 8px 15px; border-radius: 20px; white-space: nowrap; cursor: pointer; font-weight: bold; 
+        }
+        .menu-btn.aktif { background: #00f0ff; color: #000; box-shadow: 0 0 15px #00f0ff; }
+
+        /* Halaman */
+        .halaman { display: none; padding: 20px; }
+        .halaman.muncul { display: block; animation: fade 0.3s; }
+        @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Banner Home */
+        .banner { text-align: center; padding: 40px 20px; border: 2px solid #ff00ff; border-radius: 15px; margin-bottom: 20px; background: rgba(255,0,255,0.1); }
+        .banner h1 { color: #ff00ff; text-shadow: 0 0 10px #ff00ff; margin-bottom: 10px; }
+
+        /* Grid Merek di Home */
+        .grid-merek { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .kartu-merek { 
+            background: #13131f; border: 2px solid #00f0ff; border-radius: 10px; 
+            padding: 20px; text-align: center; cursor: pointer; 
+        }
+        .kartu-merek h3 { color: #00f0ff; margin-bottom: 5px; }
+
+        /* Grid Produk */
+        .grid-produk { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .kartu-produk { background: #13131f; border: 2px solid #b026ff; border-radius: 10px; padding: 15px; text-align: center; }
+        .kartu-produk h4 { color: white; margin-bottom: 10px; min-height: 40px; }
+        .harga { color: #ff00ff; font-weight: bold; font-size: 1.1rem; margin-bottom: 15px; }
+        .btn-beli { 
+            background: linear-gradient(90deg, #00f0ff, #b026ff); color: white; border: none; 
+            padding: 10px; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer; 
+        }
+
+        .judul-halaman { color: #00f0ff; margin-bottom: 20px; border-bottom: 1px solid #00f0ff; padding-bottom: 10px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="top-bar">
+            <div class="logo">TOKO NAUFAL</div>
+            <a href="https://wa.me/6282218897217?text=Halo%20Toko%20Naufal" class="wa-btn">Chat Admin</a>
+        </div>
+        <input type="text" class="search-box" id="cariBox" placeholder="Cari laptop (MSI, ROG, dll)...">
+    </header>
+
+    <div class="menu-scroll">
+        <button class="menu-btn aktif" onclick="pindahHalaman('home', this)">Home</button>
+        <button class="menu-btn" onclick="pindahHalaman('msi', this)">MSI</button>
+        <button class="menu-btn" onclick="pindahHalaman('legion', this)">Legion</button>
+        <button class="menu-btn" onclick="pindahHalaman('asus', this)">Asus</button>
+        <button class="menu-btn" onclick="pindahHalaman('acer', this)">Acer</button>
+        <button class="menu-btn" onclick="pindahHalaman('hp', this)">HP</button>
+        <button class="menu-btn" onclick="pindahHalaman('rog', this)">ROG</button>
+    </div>
+
+    <!-- HALAMAN HOME -->
+    <div id="home" class="halaman muncul">
+        <div class="banner">
+            <h1>SELAMAT DATANG!</h1>
+            <p>Pusat Laptop Gaming Terlengkap</p>
+        </div>
+        <h2 style="color:white; margin-bottom:15px;">Pilih Merek:</h2>
+        <div class="grid-merek">
+            <div class="kartu-merek" onclick="pindahHalaman('msi', null)"><h3>MSI</h3><p>Gaming</p></div>
+            <div class="kartu-merek" onclick="pindahHalaman('legion', null)"><h3>Legion</h3><p>Lenovo</p></div>
+            <div class="kartu-merek" onclick="pindahHalaman('asus', null)"><h3>Asus</h3><p>TUF/Vivo</p></div>
+            <div class="kartu-merek" onclick="pindahHalaman('acer', null)"><h3>Acer</h3><p>Predator</p></div>
+            <div class="kartu-merek" onclick="pindahHalaman('hp', null)"><h3>HP</h3><p>Omen</p></div>
+            <div class="kartu-merek" onclick="pindahHalaman('rog', null)"><h3>ROG</h3><p>Asus ROG</p></div>
+        </div>
+    </div>
+
+    <!-- HALAMAN MSI -->
+    <div id="msi" class="halaman">
+        <h2 class="judul-halaman">MSI Laptops</h2>
+        <div class="grid-produk" id="list-msi"></div>
+    </div>
+
+    <!-- HALAMAN LEGION -->
+    <div id="legion" class="halaman">
+        <h2 class="judul-halaman">Lenovo Legion</h2>
+        <div class="grid-produk" id="list-legion"></div>
+    </div>
+
+    <!-- HALAMAN ASUS -->
+    <div id="asus" class="halaman">
+        <h2 class="judul-halaman">Asus Laptops</h2>
+        <div class="grid-produk" id="list-asus"></div>
+    </div>
+
+    <!-- HALAMAN ACER -->
+    <div id="acer" class="halaman">
+        <h2 class="judul-halaman">Acer Laptops</h2>
+        <div class="grid-produk" id="list-acer"></div>
+    </div>
+
+    <!-- HALAMAN HP -->
+    <div id="hp" class="halaman">
+        <h2 class="judul-halaman">HP Laptops</h2>
+        <div class="grid-produk" id="list-hp"></div>
+    </div>
+
+    <!-- HALAMAN ROG -->
+    <div id="rog" class="halaman">
+        <h2 class="judul-halaman">ROG (Republic of Gamers)</h2>
+        <div class="grid-produk" id="list-rog"></div>
+    </div>
+
+    <script>
+        // DATA PRODUK (Silakan isi di sini)
+        const dataProduk = {
+            msi: Array(10).fill({ nama: "MSI Gaming [Slot]", spek: "i5 | 8GB | 512GB", harga: 15000000 }),
+            legion: Array(10).fill({ nama: "Legion 5 [Slot]", spek: "i7 | 16GB | 1TB", harga: 20000000 }),
+            asus: Array(10).fill({ nama: "Asus TUF [Slot]", spek: "Ryzen 5 | 8GB", harga: 12000000 }),
+            acer: Array(10).fill({ nama: "Acer Nitro [Slot]", spek: "i5 | 8GB | RTX3050", harga: 13000000 }),
+            hp: Array(10).fill({ nama: "HP Victus [Slot]", spek: "i5 | 8GB | 512GB", harga: 11000000 }),
+            rog: Array(10).fill({ nama: "ROG Strix [Slot]", spek: "i9 | 32GB | RTX4080", harga: 35000000 })
+        };
+
+        // Fungsi Tampilkan Produk
+        function tampilkanProduk() {
+            for (let merek in dataProduk) {
+                let wadah = document.getElementById('list-' + merek);
+                let html = '';
+                for (let i = 0; i < 10; i++) {
+                    let p = dataProduk[merek][i];
+                    html += `
+                        <div class="kartu-produk">
+                            <h4>${p.nama} ${i+1}</h4>
+                            <p style="color:#aaa; font-size:0.8rem; margin-bottom:10px;">${p.spek}</p>
+                            <div class="harga">Rp ${p.harga.toLocaleString('id-ID')}</div>
+                            <button class="btn-beli" onclick="beliLaptop('${merek.toUpperCase()}', '${p.nama} ${i+1}', ${p.harga})">Beli Sekarang</button>
+                        </div>
+                    `;
+                }
+                wadah.innerHTML = html;
+            }
+        }
+        tampilkanProduk();
+
+        // FUNGSI PINDAH HALAMAN (YANG DIPERBAIKI)
+        function pindahHalaman(idHalaman, tombol) {
+            // 1. Sembunyikan semua halaman
+            let semuaHalaman = document.getElementsByClassName('halaman');
+            for (let i = 0; i < semuaHalaman.length; i++) {
+                semuaHalaman[i].style.display = 'none';
+                semuaHalaman[i].classList.remove('muncul');
+            }
+
+            // 2. Tampilkan halaman yang dipilih
+            let halamanTujuan = document.getElementById(idHalaman);
+            halamanTujuan.style.display = 'block';
+            setTimeout(() => halamanTujuan.classList.add('muncul'), 10);
+
+            // 3. Update tombol menu aktif
+            if (tombol) {
+                let semuaTombol = document.getElementsByClassName('menu-btn');
+                for (let i = 0; i < semuaTombol.length; i++) {
+                    semuaTombol[i].classList.remove('aktif');
+                }
+                tombol.classList.add('aktif');
+            }
+
+            // 4. Scroll ke atas
+            window.scrollTo(0, 0);
+        }
+
+        // FUNGSI BELI VIA WA
+        function beliLaptop(merek, nama, harga) {
+            let pesan = `Halo Toko Naufal, saya mau beli laptop:\n\nMerek: ${merek}\nTipe: ${nama}\nHarga: Rp ${harga.toLocaleString('id-ID')}\n\nApakah stok masih ada?`;
+            window.open(`https://wa.me/6282218897217?text=${encodeURIComponent(pesan)}`, '_blank');
+        }
+
+        // FUNGSI PENCARIAN
+        document.getElementById('cariBox').addEventListener('input', function(e) {
+            let kataKunci = e.target.value.toLowerCase();
+            if (kataKunci.length < 2) return; // Minimal 2 huruf baru cari
+
+            // Sembunyikan menu dan halaman lain saat mencari
+            document.querySelector('.menu-scroll').style.display = 'none';
+            let semuaHalaman = document.getElementsByClassName('halaman');
+            for (let i = 0; i < semuaHalaman.length; i++) semuaHalaman[i].style.display = 'none';
+
+            // Tampilkan hasil di home (bisa dimodifikasi)
+            document.getElementById('home').style.display = 'block';
+            document.querySelector('.banner').innerHTML = `<h1>Hasil Cari: "${kataKunci}"</h1>`;
+            
+            // Logika pencarian sederhana (menampilkan semua produk yang cocok)
+            let htmlHasil = '<div class="grid-produk" style="margin-top:20px;">';
+            let ditemukan = false;
+            
+            for (let merek in dataProduk) {
+                for (let i = 0; i < 10; i++) {
+                    let p = dataProduk[merek][i];
+                    if (p.nama.toLowerCase().includes(kataKunci) || merek.includes(kataKunci)) {
+                        ditemukan = true;
+                        htmlHasil += `
+                            <div class="kartu-produk">
+                                <h4>${p.nama} ${i+1}</h4>
+                                <div class="harga">Rp ${p.harga.toLocaleString('id-ID')}</div>
+                                <button class="btn-beli" onclick="beliLaptop('${merek.toUpperCase()}', '${p.nama} ${i+1}', ${p.harga})">Beli</button>
+                            </div>
+                        `;
+                    }
+                }
+            }
+            htmlHasil += '</div>';
+            if (!ditemukan) htmlHasil = '<p style="text-align:center; margin-top:50px; color:#ff00ff;">Tidak ada laptop yang cocok.</p>';
+            
+            document.getElementById('home').innerHTML = `<div class="banner"><h1>Hasil Cari</h1></div>` + htmlHasil;
+        });
+    </script>
+</body>
+</html>
